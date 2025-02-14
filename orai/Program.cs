@@ -17,8 +17,12 @@
 			Console.WriteLine("atlagos: " + AtlagosSzint(karakterek));
 			ErossegiSzintRendezes(karakterek);
 			Console.WriteLine("meghaladja-e: " + MeghaladjaE(karakterek, 11, 1));
-            Console.WriteLine("----------");
-            KarakterStats(karakterek, 8);
+			Console.WriteLine("----------");
+			KarakterStats(karakterek, 8);
+			filbaIras(karakterek);
+			LegjobbHarom(karakterek);
+			Legjobbak(karakterek);
+
 		}
 		static void Beolvasas(string filenev, List<Karakter> karakterek)
 		{
@@ -75,8 +79,8 @@
 				return true;
 			}
 			else
-			{ 
-				return false; 
+			{
+				return false;
 			}
 		}
 
@@ -91,5 +95,44 @@
 			}
 		}
 
+		static void filbaIras(List<Karakter> karakterek)
+		{
+			StreamWriter sw = new("valami.csv");
+			foreach (var karakter in karakterek)
+			{
+				sw.WriteLine($"{karakter.Name};{karakter.Szint};{karakter.Eletero};{karakter.Ero}");
+			}
+			sw.Close();
+		}
+
+		static void Beolvasas2(string filenev, List<Karakter> karakterek)
+		{
+			StreamReader sr = new("valami.csv");
+
+			sr.ReadLine();
+
+			while (!sr.EndOfStream)
+			{
+				string sor = sr.ReadLine();
+				string[] szavak = sor.Split(';');
+
+				Karakter karakter2 = new Karakter(szavak[0], Convert.ToInt16(szavak[1]), Convert.ToInt16(szavak[2]), Convert.ToInt16(szavak[3]));
+				karakterek.Add(karakter2);
+			}
+		}
+
+		static List<Karakter> LegjobbHarom(List<Karakter> karakterek)
+		{
+			var ret = karakterek.OrderByDescending(k => k.Ero + k.Szint).ToList()[0..3];
+			return ret;
+		}
+
+		static List<Karakter> Legjobbak(List<Karakter> karakterek)
+		{
+			var ret = karakterek.OrderByDescending(k => k.Ero + k.Szint).ToList();
+			return ret;
+		}
+
 	}
-}
+	}
+
