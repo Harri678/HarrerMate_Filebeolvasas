@@ -31,5 +31,7 @@ namespace orai
 			return $"{name} - {szint} / {eletero} / {ero}";
 
 		}
+
+
 	}
 }
