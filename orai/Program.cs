@@ -17,6 +17,8 @@
 			Console.WriteLine("atlagos: " + AtlagosSzint(karakterek));
 			ErossegiSzintRendezes(karakterek);
 			Console.WriteLine("meghaladja-e: " + MeghaladjaE(karakterek, 11, 1));
+            Console.WriteLine("----------");
+            KarakterStats(karakterek, 8);
 		}
 		static void Beolvasas(string filenev, List<Karakter> karakterek)
 		{
@@ -75,6 +77,17 @@
 			else
 			{ 
 				return false; 
+			}
+		}
+
+		static void KarakterStats(List<Karakter> karakterek, int szint)
+		{
+			foreach (var karakter in karakterek)
+			{
+				if (karakter.Szint > szint)
+				{
+					Console.WriteLine(karakter.ToString());
+				}
 			}
 		}
 
