@@ -15,6 +15,8 @@
 
 			Console.WriteLine("legmagasabb: " + LegmagasabbEletero(karakterek));
 			Console.WriteLine("atlagos: " + AtlagosSzint(karakterek));
+			ErossegiSzintRendezes(karakterek);
+			Console.WriteLine("meghaladja-e: " + MeghaladjaE(karakterek, 11, 1));
 		}
 		static void Beolvasas(string filenev, List<Karakter> karakterek)
 		{
@@ -55,7 +57,26 @@
 			return ossz / karakterek.Count;
 		}
 
+		static void ErossegiSzintRendezes(List<Karakter> karakterek)
+		{
+			karakterek.Sort((x, y) => x.Ero.CompareTo(y.Ero));
+			foreach (var item in karakterek)
+			{
+				Console.WriteLine(item.ToString());
+			}
+		}
 
+		static bool MeghaladjaE(List<Karakter> karakterek, int szint, int id)
+		{
+			if (szint > karakterek[id].Szint)
+			{
+				return true;
+			}
+			else
+			{ 
+				return false; 
+			}
+		}
 
 	}
 }
